@@ -19,8 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = sanitize_input($_POST['password']);
     
     // Validate inputs
+    $errors = [];
+    
     if (empty($email) || empty($password)) {
-        $error = "Please fill in all fields";
+        $errors[] = "Please fill in all fields";
     } else {
         // Check credentials in database
         $stmt = $conn->prepare("SELECT id, name, email, password, role FROM users WHERE email = ?");
@@ -37,6 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['role'] = $user['role'];
                 
+                // Regenerate session ID for security
+                session_regenerate_id(true);
+                
+                // Redirect based on role
                 if ($user['role'] === 'admin') {
                     header('Location: ../admin/dashboard.php');
                 } else {
@@ -44,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 exit;
             } else {
-                $error = "Invalid email or password";
+                $errors[] = "Invalid email or password";
             }
         } else {
-            $error = "Invalid email or password";
+            $errors[] = "Invalid email or password";
         }
     }
 }
@@ -61,17 +67,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login | Virlanie Foundation</title>
     <link rel="stylesheet" href="../assets/css/auth.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+         body {
+            background-color: #243357;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            margin: 20px;
+        }
+        .alert-danger {
+            background-color: #F8D7DA;
+            color: #721C24;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 1px solid #F5C6CB;
+        }
+        .alert-danger p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-header">
-            <img src="../assets/images/virlanie-logo.png" alt="Virlanie Foundation Logo">
+            <img src="../assets/images/virlanie-logo-only.png" alt="Virlanie Foundation Logo">
             <h1>Welcome Back</h1>
             <p>Please login to your account</p>
         </div>
         
-        <?php if (isset($error)): ?>
-            <div class="alert alert-danger"><?php echo $error; ?></div>
+        <?php if (!empty($errors)): ?>
+            <div class="alert-danger">
+                <?php foreach ($errors as $error): ?>
+                    <p><i class="fas fa-exclamation-circle"></i> <?php echo $error; ?></p>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
         
         <form action="login.php" method="POST" class="login-form">
@@ -95,5 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     
     <script src="../assets/js/auth.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -281,7 +281,7 @@ if ($result) {
         </div>
     </div>
     
-        <section style="background-color: #bcc5d4; padding: 60px 0;">
+        <section style="background-color: #ffeedbff; padding: 60px 0;">
         <div class="container">
             <h2 class="section-title">Our Vision, Mission & Values</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 40px;">

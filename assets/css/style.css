@@ -1,0 +1,20 @@
+/* Base styles that match Virlanie's design */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    color: #E74C3C;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #C0392B;
+}
+
+/* Add other common styles here */

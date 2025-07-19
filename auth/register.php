@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('../includes/config.php');
-include('../includes/functions.php');
+include(__DIR__ . '/../includes/config.php');
+include(__DIR__ . '/../includes/functions.php');
 
 // Check if user is already logged in
 if (isset($_SESSION['user_id'])) {

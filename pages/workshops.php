@@ -1,7 +1,7 @@
 <?php
 session_start();
-include(__DIR__ . '/includes/config.php');
-include(__DIR__ . '/includes/functions.php');
+include(__DIR__ . '/../includes/config.php');
+include(__DIR__ . '/../includes/functions.php');
 
 
 // Get featured workshops from database
@@ -21,14 +21,12 @@ if ($result) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virlanie Foundation - Skills Development Programs</title>
+    <title>Virlanie Foundation - Workshops</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -222,34 +220,24 @@ if ($result) {
                     <a href="admin/dashboard.php">Admin Dashboard</a>
                 <?php endif; ?>
             <?php else: ?>
-                <a href="auth/login.php">Login</a>
-                <a href="auth/register.php">Register</a>
+                <a href="../auth/login.php">Login</a>
+                <a href="../auth/register.php">Register</a>
             <?php endif; ?>
         </div>
         
         <nav class="navbar">
             <a href="index.php">
-                <img src="assets/images/virlanie-logo.png" alt="Virlanie Foundation" class="logo">
+                <img src="../assets/images/virlanie-logo.png" alt="Virlanie Foundation" class="logo">
             </a>
             <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="pages/workshops.php">Workshops</a></li>
-                <li><a href="pages/about.php">About Us</a></li>
-                <li><a href="pages/volunteer.php">Volunteer</a></li>
-                <li><a href="pages/contact.php">Contact</a></li>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="workshops.php">Workshops</a></li>
+                <li><a href="about.php">About Us</a></li>
+                <li><a href="volunteer.php">Volunteer</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
-    <section class="hero">
-        <h1>Empowering Children Through Skills Development</h1>
-        <p>Join our workshops and programs designed to help vulnerable children and youth develop essential life skills for a brighter future.</p>
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="workshops.php" class="btn">Browse Workshops</a>
-        <?php else: ?>
-            <a href="auth/register.php" class="btn">Join Our Programs</a>
-        <?php endif; ?>
-    </section>
     
     <div class="container">
         <h2 class="section-title">Upcoming Workshops</h2>
@@ -281,73 +269,9 @@ if ($result) {
         </div>
     </div>
     
-        <section style="background-color: #bcc5d4; padding: 60px 0;">
-        <div class="container">
-            <h2 class="section-title">Our Vision, Mission & Values</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 40px;">
-                <!-- Vision Card -->
-                <div style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; color: var(--virlanie-red); margin-bottom: 15px; text-align: center;">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <h3 style="color: var(--virlanie-red); text-align: center;">Our Vision</h3>
-                    <p style="font-style: italic; text-align: center;">By 2028, VFI is an innovative organization with highly competent staff and volunteers who provide services to children and families at risk with stable funding from donors, sponsors, and partners who preferentially engage with the Foundation because of the consistent results they produce.</p>
-                </div>
-                
-                <!-- Mission Card -->
-                <div style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; color: var(--virlanie-red); margin-bottom: 15px; text-align: center;">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 style="color: var(--virlanie-red); text-align: center;">Our Mission</h3>
-                    <p style="font-style: italic; text-align: center;">We provide the most disadvantaged children with a caring family environment, opportunities for their healing and development through a multi-disciplinary approach, and collaboration with all stakeholders so they can reach their full potential and be mainstreamed into society.</p>
-                </div>
-                
-                <!-- Values Card -->
-                <div style="flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; color: var(--virlanie-red); margin-bottom: 15px; text-align: center;">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 style="color: var(--virlanie-red); text-align: center;">Our Core Values</h3>
-                    <p style="font-style: italic; text-align: center;">We provide our services with utmost excellence, integrity, and accountability; and, in harmony with our networks and partners, exhibit leadership in childcare and the promotion and protection of children's rights. We demonstrate vitality, resilience, and innovation in our approaches to childcare, street children engagement, and family strengthening.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <div class="container">
-        <h2 class="section-title">How You Can Help</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
-            <div style="padding: 20px;">
-                <div style="font-size: 3rem; color: var(--virlanie-red); margin-bottom: 15px;">
-                    <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <h3>Donate</h3>
-                <p>Your financial support helps us maintain and expand our skills development programs.</p>
-                <a href="pages/donate.php" class="btn">Donate Now</a>
-            </div>
-            <div style="padding: 20px;">
-                <div style="font-size: 3rem; color: var(--virlanie-red); margin-bottom: 15px;">
-                    <i class="fas fa-hands-helping"></i>
-                </div>
-                <h3>Volunteer</h3>
-                <p>Share your skills and time by leading or assisting with our workshops.</p>
-                <a href="pages/volunteer.php" class="btn">Volunteer</a>
-            </div>
-            <div style="padding: 20px;">
-                <div style="font-size: 3rem; color: var(--virlanie-red); margin-bottom: 15px;">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <h3>Spread the Word</h3>
-                <p>Help us reach more children by sharing our programs with your network.</p>
-                <a href="pages/contact.php" class="btn">Contact Us</a>
-            </div>
-        </div>
-    </div>
-    
     <footer class="footer">
         <div class="container">
-            <img src="assets/images/virlanie-logo.png" alt="Virlanie Foundation" style="height: 60px; margin-bottom: 20px;">
+            <img src="../assets/images/virlanie-logo.png" alt="Virlanie Foundation" style="height: 60px; margin-bottom: 20px;">
             <p>Empowering children and youth through education and skills development since 1992.</p>
             <div style="margin: 30px 0;">
                 <a href="https://www.facebook.com/virlaniefoundation/" style="color: white; margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
